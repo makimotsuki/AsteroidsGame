@@ -30,7 +30,7 @@ public void draw()
   {
     rocks.get(i).move();
     rocks.get(i).show();
-    float d = dist((int)bob.getCenterX(), (int)bob.getCenterY(), (int)rocks.get(i).getCenterX(), (int)rocks.get(i).getCenterY());
+    float d = dist((int)bob.getShipX(), (int)bob.getShipY(), (int)rocks.get(i).getCenterX(), (int)rocks.get(i).getCenterY());
     if (d<20)
     {
       rocks.remove(i);
