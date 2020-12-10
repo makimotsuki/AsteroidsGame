@@ -1,6 +1,6 @@
 //your variable declarations here
 Spaceship bob = new Spaceship();
-ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
+//ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
 ArrayList <Bullet> shots = new ArrayList<Bullet>();
 Star[] nightSky = new Star[200];
 public void setup() 
@@ -11,7 +11,7 @@ public void setup()
   {
     nightSky[i] = new Star();
   }
-  for (int i = 0; i<10; i++)
+  //for (int i = 0; i<10; i++)
   {
     rocks.add(new Asteroid());
   }
