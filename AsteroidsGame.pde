@@ -1,6 +1,7 @@
 //your variable declarations here
+boolean gameStart = false;
 boolean gameOver = false;
-int bulletsLeft = 30;
+int bulletsLeft = 20;
 int asteroidsLeft = 10;
 int shipHealth = 60;
 Spaceship bob = new Spaceship();
@@ -53,7 +54,7 @@ public void draw()
     for (int j = 0; j<rocks.size(); j++)
   {
     float d = dist((int)rocks.get(j).getCenterX(), (int)rocks.get(j).getCenterY(), (int)shots.get(i).getCenterX(), (int)shots.get(i).getCenterY());
-    if (d<15)
+    if (d<25)
     {
       shots.remove(i);
       rocks.remove(j);
@@ -64,6 +65,10 @@ public void draw()
   }
   if(bulletsLeft==0 || shipHealth==0){
     background(0);
+    for (int i = 0; i < nightSky.length; i++)
+    {
+    nightSky[i].show();
+    }
     fill(255);
     textSize(15);
     text("You Lost! Be wise with your bullets and avoid the asteroids!",30,250);
@@ -73,12 +78,31 @@ public void draw()
   }
   if(asteroidsLeft==0){
     background(0);
+    for (int i = 0; i < nightSky.length; i++)
+    {
+    nightSky[i].show();
+    }
     fill(255);
     textSize(25);
-    text("You won! Good Job!",20,250);
+    text("You won!",170,250);
     text("Click to play again!",140,280);
     gameOver = true;
     noLoop();
+  }
+  if(gameStart==false)
+  {
+    noLoop();
+    background(0);
+    for (int i = 0; i < nightSky.length; i++)
+    {
+    nightSky[i].show();
+    }
+    text("Welcome to this spaceship game.",15,250);
+    textSize(20);
+    text("Be ready to dodge asteroids and shoot them!",40,280);
+    text("Every time you are hit, you lose 20 health.",40,310);
+    text("You will start with 20 bullets and 60 health.",40,340);
+    text("Click to play!",170,370);
   }
 }
 public void mouseClicked()
@@ -86,7 +110,25 @@ public void mouseClicked()
   if(gameOver==true)
     gameOver = false;    
     loop();
-    bulletsLeft = 30;
+    bulletsLeft = 20;
+    asteroidsLeft=10;
+    shipHealth = 60;
+    bob.setCenterX(250);
+    bob.setCenterY(250);
+    bob.setXspeed(0);
+    bob.setYspeed(0);
+    for (int i = rocks.size()-1; i>=0;i--)
+    {
+      rocks.remove(i);
+    }
+    for (int i = 0; i<10; i++)
+    {
+    rocks.add(new Asteroid());
+    }
+  if (gameStart==false)
+    gameStart=true;
+    loop();
+    bulletsLeft = 20;
     asteroidsLeft=10;
     shipHealth = 60;
     bob.setCenterX(250);
